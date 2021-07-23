@@ -1,4 +1,5 @@
 const { Person, validate } = require("../models/person-model");
+const validateObjectId = require("../middleware/validateObjectId");
 const express = require("express");
 const router = express.Router();
 
@@ -7,11 +8,9 @@ router.get("/", async (req, res) => {
   res.send(people);
 });
 
-router.get("/:id", async (req, res) => {
-  // validate id
-
+router.get("/:id", validateObjectId, async (req, res) => {
   const person = await Person.findById(req.params.id);
-  if (person.length === 0)
+  if (!person || person.length === 0)
     return res.status(404).send("Person does not exist!");
 
   res.send(person);
@@ -43,6 +42,8 @@ router.post("/", async (req, res) => {
     nextcontact,
     notes,
     tags,
+    createdAt,
+    editedAt,
   } = req.body;
 
   const person = new Person({
@@ -58,14 +59,15 @@ router.post("/", async (req, res) => {
     nextcontact,
     notes,
     tags,
+    createdAt,
+    editedAt,
   });
 
   await person.save();
   res.send(person);
 });
 
-router.put("/:id", async (req, res) => {
-  // validate id
+router.put("/:id", validateObjectId, async (req, res) => {
   const person = await Person.findById(req.params.id);
   if (!person) return res.status(404).send("Person does not exist!");
 

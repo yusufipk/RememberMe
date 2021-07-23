@@ -98,6 +98,15 @@ const personSchema = new mongoose.Schema({
       message: "Max tag size is 6!",
     },
   },
+  createdAt: {
+    type: String,
+    maxlength: 25,
+  },
+  editedAt: {
+    type: Date,
+    default: Date.now(),
+    required: true,
+  },
 });
 
 const Person = mongoose.model("Person", personSchema);
@@ -125,6 +134,7 @@ function validatePerson(value) {
     nextcontact: Joi.string().min(3).max(50),
     notes: Joi.string().min(3).max(500),
     tags: Joi.array().max(6),
+    createdAt: Joi.string().max(25),
   });
   return schema.validate(value);
 }
