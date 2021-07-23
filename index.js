@@ -11,35 +11,10 @@ mongoose
   .then(() => console.log("Connected to MongoDB..."))
   .catch((err) => console.log("Could not connect to MongoDB", err));
 
-//temp
-// const { Person } = require("./models/person-model");
+const people = require("./routes/person");
 
-// async function createPerson() {
-//   const per = new Person({
-//     name: "Mike",
-//     place: "Discord Eng Group",
-//     contact: {
-//       phone: "12345",
-//       email: "123456@gmail.com",
-//       socialmedia: {
-//         instagram: "mike123",
-//         youtube: "mike123",
-//         twitter: "mike123",
-//       },
-//     },
-//     birth: "10.05.1998",
-//     age: 22,
-//     likes: ["football", "video games"],
-//     dislikes: ["cats", "spiders"],
-//     occupation: "student",
-//     lastseen: "12.07.2021",
-//     nextcontact: "15.07.2021",
-//     notes: "He is a nice guy.",
-//     tags: ["student", "programmer", "father", "mother", "brother", "doctor"],
-//   });
-//   const result = await per.save();
-//   console.log(result);
-// }
+app.use(express.json());
+app.use("/api/person", people);
 
 const port = process.env.port || 3002;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

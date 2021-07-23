@@ -21,13 +21,11 @@ const personSchema = new mongoose.Schema({
         type: String,
         minlength: 5,
         maxlength: 20,
-        unique: true,
       },
       email: {
         type: String,
         minlength: 5,
         maxlength: 255,
-        unique: true,
       },
       socialmedia: {
         type: new mongoose.Schema({
@@ -41,13 +39,11 @@ const personSchema = new mongoose.Schema({
             type: String,
             minlength: 3,
             maxlength: 15,
-            unique: true,
           },
           twitter: {
             type: String,
             minlength: 3,
             maxlength: 15,
-            unique: true,
           },
         }),
       },
@@ -55,7 +51,6 @@ const personSchema = new mongoose.Schema({
         type: String,
         minlength: 5,
         maxlength: 25,
-        unique: true,
       },
     }),
   },
@@ -98,7 +93,6 @@ const personSchema = new mongoose.Schema({
 
     validate: {
       validator: function (value) {
-        console.log(value.length);
         return value.length <= 6;
       },
       message: "Max tag size is 6!",
@@ -113,14 +107,14 @@ function validatePerson(value) {
     name: Joi.string().min(3).max(50).required(),
     place: Joi.string().min(3).max(50).required(true),
     contact: Joi.object({
-      phone: Joi.string().min(5).max(20).unique(),
-      email: Joi.string().email().min(5).max(255).unique(),
+      phone: Joi.string().min(5).max(20),
+      email: Joi.string().email().min(5).max(255),
       socialmedia: Joi.object({
-        instagram: Joi.string().min(3).max(15).unique(),
-        youtube: Joi.string().min(3).max(15).unique(),
-        twitter: Joi.string().min(3).max(15).unique(),
+        instagram: Joi.string().min(3).max(15),
+        youtube: Joi.string().min(3).max(15),
+        twitter: Joi.string().min(3).max(15),
       }),
-      website: Joi.string().min(5).max(25).unique(),
+      website: Joi.string().min(5).max(25),
     }),
     birth: Joi.string().max(25),
     age: Joi.number().max(100),
