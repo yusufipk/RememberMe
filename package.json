@@ -2,6 +2,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "joi": "^17.4.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.3"
   },
   "devDependencies": {
