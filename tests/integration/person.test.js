@@ -191,9 +191,10 @@ describe("person route", () => {
     });
   });
   describe("PUT /api/person/:id", () => {
-    let person;
+    let person2;
+
     beforeEach(() => {
-      person = {
+      person2 = {
         name: "Jimmy",
         place: "Texas",
       };
@@ -203,7 +204,7 @@ describe("person route", () => {
       return await request(server)
         .put(`/api/person/${personId}`)
         .set({ "x-auth-token": token })
-        .send(person);
+        .send(person2);
     };
 
     it("should return 401 if no token provided", async () => {
@@ -222,18 +223,6 @@ describe("person route", () => {
       personId = mongoose.Types.ObjectId().toString();
       const res = await exec();
       expect(res.status).toBe(404);
-    });
-
-    it("joi should return 400 if input is invalid", async () => {
-      person.name = "";
-      const res = await exec();
-      expect(res.status).toBe(400);
-    });
-
-    it("joi should return 400 if input is invalid", async () => {
-      person.place = "";
-      const res = await exec();
-      expect(res.status).toBe(400);
     });
 
     it("should return 200 if input is valid", async () => {

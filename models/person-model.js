@@ -136,7 +136,7 @@ function validatePerson(value) {
     tags: Joi.array().max(6),
     createdAt: Joi.string().max(25),
   });
-  return schema.validate(value);
+  return schema.validate(value, { allowUnknown: true });
 }
 
 exports.Person = Person;

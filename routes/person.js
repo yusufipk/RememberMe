@@ -72,6 +72,35 @@ router.put("/:id", auth, validateObjectId, async (req, res) => {
   const person = await Person.findById(req.params.id);
   if (!person) return res.status(404).send("Person does not exist!");
 
+  const {
+    name,
+    place,
+    contact,
+    birth,
+    age,
+    likes,
+    dislikes,
+    occupation,
+    lastseen,
+    nextcontact,
+    notes,
+    tags,
+  } = person;
+
+  if (!req.body.name) req.body.name = name;
+  if (!req.body.place) req.body.place = place;
+  if (!req.body.contact) req.body.contact = contact;
+  if (!req.body.birth) req.body.birth = birth;
+  if (!req.body.age) req.body.age = age;
+  if (!req.body.likes) req.body.likes = likes;
+  if (!req.body.dislikes) req.body.dislikes = dislikes;
+  if (!req.body.occupation) req.body.occupation = occupation;
+  if (!req.body.lastseen) req.body.lastseen = lastseen;
+  if (!req.body.nextcontact) req.body.nextcontact = nextcontact;
+  if (!req.body.notes) req.body.notes = notes;
+  if (!req.body.tags) req.body.tags = tags;
+
+  console.log(req.body);
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 

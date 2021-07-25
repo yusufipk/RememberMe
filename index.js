@@ -3,6 +3,8 @@ const app = express();
 
 require("./startup/db")();
 require("./startup/routes")(app);
+if (process.env.NODE_ENV !== "test") require("./startup/prod")(app);
+
 const { logger } = require("./startup/logging");
 
 const port = process.env.port || 3002;
