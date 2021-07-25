@@ -10,6 +10,6 @@
     "supertest": "^6.1.4"
   },
   "scripts": {
-    "test": "jest --watchAll --verbose --coverage"
+    "test": "jest --watchAll --verbose --runInBand --coverage"
   }
 }

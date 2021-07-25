@@ -18,8 +18,8 @@ router.get("/:id", auth, validateObjectId, async (req, res) => {
 });
 
 router.get("/get/:name", auth, async (req, res) => {
-  const p = new RegExp(req.params.name, "i");
-  const person = await Person.find({ name: p });
+  const findName = new RegExp(req.params.name, "i");
+  const person = await Person.find({ name: findName });
   if (person.length === 0)
     return res.status(404).send("Person does not exist!");
 
