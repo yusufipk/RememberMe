@@ -26,9 +26,11 @@ const people = require("./routes/person");
 app.use(express.json());
 app.use("/api/person", people);
 
+const { logger } = require("./startup/logging");
+
 const port = process.env.port || 3002;
 const server = app.listen(port, () =>
-  console.log(`Listening on port ${port}...`)
+  logger.info(`Listening on port ${port}...`)
 );
 
 module.exports = server;
