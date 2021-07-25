@@ -4,7 +4,7 @@ module.exports.createToken = function () {
     expiresIn: "30d",
   });
 
-  if (!process.env.NODE_ENV === "test") {
+  if (process.env.NODE_ENV !== "test") {
     console.log(token);
   }
 

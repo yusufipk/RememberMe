@@ -23,7 +23,8 @@ describe("person route", () => {
     person = new Person({
       _id: personId,
       name: "Mike",
-      place: "Taksim",
+      metAt: "Taksim",
+      createdAt: "10.10.2000",
     });
     await person.save();
 
@@ -150,11 +151,12 @@ describe("person route", () => {
   });
 
   describe("POST /api/person", () => {
-    let person;
+    let person2;
     beforeEach(() => {
-      person = {
+      person2 = {
         name: "Skips",
-        place: "Car Maintanance",
+        metAt: "Car Maintanance",
+        createdAt: "20.12.2020",
       };
     });
 
@@ -162,7 +164,7 @@ describe("person route", () => {
       return await request(server)
         .post(`/api/person/`)
         .set({ "x-auth-token": token })
-        .send(person);
+        .send(person2);
     };
 
     it("should return 401 if no token provided", async () => {
@@ -178,7 +180,7 @@ describe("person route", () => {
     });
 
     it("joi should return 400 if input is invalid", async () => {
-      person.name = "";
+      person2.name = "";
       const res = await exec();
       expect(res.status).toBe(400);
     });
@@ -196,7 +198,8 @@ describe("person route", () => {
     beforeEach(() => {
       person2 = {
         name: "Jimmy",
-        place: "Texas",
+        metAt: "Texas",
+        createdAt: "11.11.2021",
       };
     });
 

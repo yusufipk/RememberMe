@@ -9,11 +9,16 @@ const personSchema = new mongoose.Schema({
     trim: true,
     required: true,
   },
-  place: {
+  metAt: {
     type: String,
     minlength: 3,
     maxlength: 50,
     required: true,
+  },
+  place: {
+    type: String,
+    minlength: 3,
+    maxlength: 50,
   },
   contact: {
     type: new mongoose.Schema({
@@ -101,6 +106,7 @@ const personSchema = new mongoose.Schema({
   createdAt: {
     type: String,
     maxlength: 25,
+    required: true,
   },
   editedAt: {
     type: Date,
@@ -114,7 +120,8 @@ const Person = mongoose.model("Person", personSchema);
 function validatePerson(value) {
   const schema = Joi.object({
     name: Joi.string().min(3).max(50).required(),
-    place: Joi.string().min(3).max(50).required(),
+    metAt: Joi.string().min(3).max(50).required(),
+    place: Joi.string().min(3).max(50),
     contact: Joi.object({
       phone: Joi.string().min(5).max(20),
       email: Joi.string().email().min(5).max(255),
@@ -134,7 +141,7 @@ function validatePerson(value) {
     nextcontact: Joi.string().min(3).max(50),
     notes: Joi.string().min(3).max(500),
     tags: Joi.array().max(6),
-    createdAt: Joi.string().max(25),
+    createdAt: Joi.string().max(25).required(),
   });
   return schema.validate(value, { allowUnknown: true });
 }

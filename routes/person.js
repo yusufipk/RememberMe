@@ -32,6 +32,7 @@ router.post("/", auth, async (req, res) => {
 
   const {
     name,
+    metAt,
     place,
     contact,
     birth,
@@ -50,6 +51,7 @@ router.post("/", auth, async (req, res) => {
   const person = new Person({
     name,
     place,
+    metAt,
     contact,
     birth,
     age,
@@ -100,7 +102,6 @@ router.put("/:id", auth, validateObjectId, async (req, res) => {
   if (!req.body.notes) req.body.notes = notes;
   if (!req.body.tags) req.body.tags = tags;
 
-  console.log(req.body);
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
