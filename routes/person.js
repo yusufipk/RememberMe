@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", auth, async (req, res) => {
-  const people = await Person.find();
+  const people = await Person.find().sort("field name");
   res.send(people);
 });
 
@@ -77,6 +77,7 @@ router.put("/:id", auth, validateObjectId, async (req, res) => {
   const {
     name,
     place,
+    metAt,
     contact,
     birth,
     age,
@@ -87,11 +88,22 @@ router.put("/:id", auth, validateObjectId, async (req, res) => {
     nextcontact,
     notes,
     tags,
+    createdAt,
   } = person;
 
   if (!req.body.name) req.body.name = name;
+  if (!req.body.metAt) req.body.metAt = metAt;
   if (!req.body.place) req.body.place = place;
-  if (!req.body.contact) req.body.contact = contact;
+
+  if (!req.body.contact.socialmedia.instagram)
+    req.body.contact.socialmedia.instagram = contact.socialmedia.instagram;
+  if (!req.body.contact.socialmedia.youtube)
+    req.body.contact.socialmedia.youtube = contact.socialmedia.youtube;
+  if (!req.body.contact.socialmedia.twitter)
+    req.body.contact.socialmedia.twitter = contact.socialmedia.twitter;
+  if (!req.body.contact.phone) req.body.contact.phone = contact.phone;
+  if (!req.body.contact.email) req.body.contact.email = contact.email;
+
   if (!req.body.birth) req.body.birth = birth;
   if (!req.body.age) req.body.age = age;
   if (!req.body.likes) req.body.likes = likes;
@@ -101,6 +113,7 @@ router.put("/:id", auth, validateObjectId, async (req, res) => {
   if (!req.body.nextcontact) req.body.nextcontact = nextcontact;
   if (!req.body.notes) req.body.notes = notes;
   if (!req.body.tags) req.body.tags = tags;
+  if (!req.body.createdAt) req.body.createdAt = createdAt;
 
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);

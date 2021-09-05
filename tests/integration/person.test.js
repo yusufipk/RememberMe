@@ -199,6 +199,18 @@ describe("person route", () => {
       person2 = {
         name: "Jimmy",
         metAt: "Texas",
+
+        // created contact empty because I want tests to work with rememberme-cli
+        contact: {
+          socialmedia: {
+            instagram: "",
+            youtube: "",
+            twitter: "",
+          },
+          phone: "",
+          email: "",
+        },
+
         createdAt: "11.11.2021",
       };
     });

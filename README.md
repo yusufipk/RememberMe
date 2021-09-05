@@ -55,7 +55,7 @@ Here are the example requests you can make.
 {
   "name": "Mike",
   "metAt": "Wall Maria Cafe",
-  "place": "Üsküdar"
+  "place": "Üsküdar",
   "contact": {
     "phone": "12345",
     "email": "123456@gmail.com",
