@@ -7,7 +7,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.3",
     "winston": "^3.3.3",
-    "winston-mongodb": "^5.0.7"
+    "winston-mongodb": "^5.0.7",
+    "cors": "^2.8.5"
+
   },
   "devDependencies": {
     "jest": "^27.0.6",
