@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "compression": "^1.7.4",
-    "express": "^4.17.1",
+    "compression": "^1.8.1",
+    "express": "^4.22.0",
     "helmet": "^4.6.0",
     "joi": "^17.4.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.3",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.13.6",
     "winston": "^3.3.3",
     "winston-mongodb": "^5.0.7"
   },
